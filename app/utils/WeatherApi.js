@@ -1,3 +1,4 @@
+var axios = require("axios");
 
 var apiURL = {
   baseURL: "http://api.openweathermap.org/data/2.5/",
@@ -33,11 +34,29 @@ function buildForecastRequest(city) {
 }
 
 function getCurrentWeather(city) {
-  return buildCurrentWeatherRequest(city);
+  var requestUrl = buildCurrentWeatherRequest(city);
+
+  return axios.get(requestUrl)
+    .then(function (weatherResponse) {
+      console.log("weather", weatherResponse.data);
+      return weatherResponse.data;
+    })
+    .catch(function (err) {
+      console.warn("Error in getCurrentWeather API:", err);
+    });
 }
 
 function getForecast(city) {
-  return buildForecastRequest(city);
+  var requestUrl = buildForecastRequest(city);
+
+  return axios.get(requestUrl)
+    .then(function (forecastResponse) {
+      console.log("forecast:", forecastResponse.data);
+      return forecastResponse.data;
+    })
+    .catch(function (err) {
+      console.warn("Error in getForecast API:", err);
+    });
 }
 
 module.exports = {
