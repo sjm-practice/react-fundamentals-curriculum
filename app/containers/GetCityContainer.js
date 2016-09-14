@@ -23,7 +23,9 @@ var GetCityContainer = React.createClass({
   },
 
   handleSubmitCity: function () {
-    console.log(WeatherApi.getCurrentWeather(this.state.city));
+    console.log("current weather:", WeatherApi.getCurrentWeather(this.state.city));
+    console.log(" ");
+    console.log("forecast:", WeatherApi.getForecast(this.state.city));
   },
 
   handleUpdateCity: function (e) {
