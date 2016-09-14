@@ -3,6 +3,7 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 var GetCity = require("../components/GetCity");
+var WeatherApi = require("../utils/WeatherApi");
 
 var GetCityContainer = React.createClass({
   getDefaultProps: function () {
@@ -22,7 +23,7 @@ var GetCityContainer = React.createClass({
   },
 
   handleSubmitCity: function () {
-    console.log(this.state.city);
+    console.log(WeatherApi.getCurrentWeather(this.state.city));
   },
 
   handleUpdateCity: function (e) {
