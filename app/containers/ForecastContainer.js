@@ -7,23 +7,19 @@ var Forecast = require("../components/Forecast");
 
 var getCityForecast = require("../utils/WeatherApi").getForecast;
 
-function puke(obj) {
-  return <pre>{JSON.stringify(obj, null, ' ')}</pre>;
-}
-
 var ForecastContainer = React.createClass({
   getInitialState: function () {
     return {
       isLoading: true,
-      forecast: {}
+      forecastData: {}
     };
   },
 
   componentDidMount: function () {
     getCityForecast(this.props.routeParams.city)
-      .then(function (forecast) {
+      .then(function (forecastData) {
         this.setState({
-          forecast: forecast,
+          forecastData: forecastData,
           isLoading: false
         });
       }.bind(this));
@@ -32,10 +28,10 @@ var ForecastContainer = React.createClass({
   render: function () {
     return this.state.isLoading
       ? <h2>Loading...</h2>
-      : <div>
-          <Forecast city={this.props.routeParams.city} />
-          <div>{puke(this.state.forecast)}</div>
-        </div>
+      : <Forecast
+          city={this.props.routeParams.city}
+          forecastData={this.state.forecastData}
+        />
       ;
   }
 });
