@@ -28,7 +28,6 @@ var GetCityContainer = React.createClass({
 
   handleSubmitCity: function (e) {
     e.preventDefault();
-    console.log("sending weather api requests for:", this.state.city);
     this.context.router.push("/forecast/" + this.state.city);
   },
 
