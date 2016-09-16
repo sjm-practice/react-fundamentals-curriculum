@@ -41,13 +41,8 @@ function getStyles(props) {
 function GetCity(props) {
   return (
     <div style={getStyles(props)}>
-      <InputField
-        onUpdateCity={props.onUpdateCity}
-        city={props.city} />
-      <Button
-        onSubmitCity={props.onSubmitCity}>
-          Get Weather
-      </Button>
+      <InputField onUpdateCity={props.onUpdateCity} city={props.city} />
+      <Button onSubmitCity={props.onSubmitCity}>Get Weather</Button>
     </div>
   );
 }
