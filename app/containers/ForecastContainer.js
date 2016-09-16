@@ -16,6 +16,7 @@ var ForecastContainer = React.createClass({
   },
 
   componentDidMount: function () {
+    console.log("getting forecast for: ", this.props.routeParams.city);
     getCityForecast(this.props.routeParams.city)
       .then(function (forecastData) {
         this.setState({
