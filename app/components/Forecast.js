@@ -3,16 +3,71 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 
-function puke(obj) {
-  return <pre>{JSON.stringify(obj, null, ' ')}</pre>;
+var utils = require("../utils/utils");
+var getDate = utils.getDate;
+var convertTemp = utils.convertTemp;
+
+var styles = {
+  container: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    maxWidth: 1200,
+    margin: '50px auto'
+  },
+  dayContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    margin: 35
+  },
+  header: {
+    fontSize: 65,
+    color: '#333',
+    fontWeight: 100,
+    textAlign: 'center'
+  },
+  subheader: {
+    fontSize: 30,
+    color: '#333',
+    fontWeight: 100
+  },
+  weather: {
+    height: 130
+  }
+};
+
+// function puke(obj) {
+  {/*return <pre>{JSON.stringify(obj, null, ' ')}</pre>;*/}
+// }
+
+function ForecastDay(props) {
+  var date = getDate(props.dayData.dt);
+  var icon = props.dayData.weather[0].icon;
+
+  return (
+    <div style={styles.dayContainer}>
+      <img src={"./app/images/weather-icons/" + icon + ".svg"} alt="Weather" style={styles.weather}/>
+      <h2 style={styles.subheader}>{date}</h2>
+      <h4>Today's high: {convertTemp(props.dayData.temp.max)} degrees</h4>
+    </div>
+  );
 }
 
 function Forecast(props) {
+  console.log(props.forecastData);
+
   return (
     <div>
-
-    <div>Forecast for {props.city}</div>
-      <div>{puke(props.forecastData)}</div>
+      <h1 style={styles.header}>Forecast for {props.city}</h1>
+      <div style={styles.container}>
+        {props.forecastData.list.map(function (forecastDay) {
+          return <ForecastDay key={forecastDay.dt} dayData={forecastDay} />;
+        })}
+      </div>
     </div>
   );
 }
