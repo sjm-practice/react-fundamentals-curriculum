@@ -38,7 +38,6 @@ function getCurrentWeather(city) {
 
   return axios.get(requestUrl)
     .then(function (weatherResponse) {
-      console.log("weather", weatherResponse.data);
       return weatherResponse.data;
     })
     .catch(function (err) {
@@ -51,7 +50,6 @@ function getForecast(city) {
 
   return axios.get(requestUrl)
     .then(function (forecastResponse) {
-      console.log("forecast:", forecastResponse.data);
       return forecastResponse.data;
     })
     .catch(function (err) {
