@@ -63,7 +63,7 @@ function Forecast(props) {
           return <ForecastDay
             key={forecastDay.dt}
             dayData={forecastDay}
-            onClickForecastDay={props.onClickForecastDay}
+            onClickForecastDay={props.onClickForecastDay.bind(null, forecastDay)}
           />;
         })}
       </div>
