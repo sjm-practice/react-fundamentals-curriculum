@@ -40,19 +40,14 @@ var styles = {
   }
 };
 
-// function puke(obj) {
-  {/*return <pre>{JSON.stringify(obj, null, ' ')}</pre>;*/}
-// }
-
 function ForecastDay(props) {
   var date = getDate(props.dayData.dt);
   var icon = props.dayData.weather[0].icon;
 
   return (
-    <div style={styles.dayContainer}>
+    <div style={styles.dayContainer} onClick={props.onClickForecastDay}>
       <img src={"./app/images/weather-icons/" + icon + ".svg"} alt="Weather" style={styles.weather}/>
       <h2 style={styles.subheader}>{date}</h2>
-      <h4>Today's high: {convertTemp(props.dayData.temp.max)} degrees</h4>
     </div>
   );
 }
@@ -65,7 +60,11 @@ function Forecast(props) {
       <h1 style={styles.header}>Forecast for {props.city}</h1>
       <div style={styles.container}>
         {props.forecastData.list.map(function (forecastDay) {
-          return <ForecastDay key={forecastDay.dt} dayData={forecastDay} />;
+          return <ForecastDay
+            key={forecastDay.dt}
+            dayData={forecastDay}
+            onClickForecastDay={props.onClickForecastDay}
+          />;
         })}
       </div>
     </div>
@@ -75,6 +74,7 @@ function Forecast(props) {
 Forecast.propTypes = {
   city: PropTypes.string.isRequired,
   forecastData: PropTypes.object.isRequired,
+  onClickForecastDay: PropTypes.func.isRequired,
 };
 
 module.exports = Forecast;

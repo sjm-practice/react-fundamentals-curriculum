@@ -26,12 +26,17 @@ var ForecastContainer = React.createClass({
       }.bind(this));
   },
 
+  handleClickForecastDay: function () {
+    console.log("Clicked!");
+  },
+
   render: function () {
     return this.state.isLoading
       ? <h2>Loading...</h2>
       : <Forecast
           city={this.props.routeParams.city}
           forecastData={this.state.forecastData}
+          onClickForecastDay={this.handleClickForecastDay}
         />
       ;
   }

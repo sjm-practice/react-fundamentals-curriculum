@@ -37,7 +37,7 @@ var GetCityContainer = React.createClass({
     });
   },
 
-render: function () {
+  render: function () {
     return (
       <GetCity
         direction={this.props.direction}
