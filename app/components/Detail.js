@@ -17,7 +17,6 @@ var styles = {
 };
 
 function Detail(props) {
-  console.log("props in detail:", props);
   return (
     <div style={styles.descriptionContainer}>
       <p>{props.city}</p>
