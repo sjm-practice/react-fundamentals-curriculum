@@ -3,6 +3,7 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 
+var ForecastDay = require("./ForecastDay");
 var utils = require("../utils/utils");
 var convertTemp = utils.convertTemp;
 
@@ -18,12 +19,15 @@ var styles = {
 
 function Detail(props) {
   return (
-    <div style={styles.descriptionContainer}>
-      <p>{props.city}</p>
-      <p>{props.weather.weather[0].description}</p>
-      <p>min temp: {convertTemp(props.weather.temp.min)} degrees</p>
-      <p>max temp: {convertTemp(props.weather.temp.max)} degrees</p>
-      <p>humidity: {props.weather.humidity}</p>
+    <div>
+      <ForecastDay unixTimestamp={props.weather.dt} iconName={props.weather.weather[0].icon}/>
+      <div style={styles.descriptionContainer}>
+        <p>{props.city}</p>
+        <p>{props.weather.weather[0].description}</p>
+        <p>min temp: {convertTemp(props.weather.temp.min)} degrees</p>
+        <p>max temp: {convertTemp(props.weather.temp.max)} degrees</p>
+        <p>humidity: {props.weather.humidity}</p>
+      </div>
     </div>
   );
 }

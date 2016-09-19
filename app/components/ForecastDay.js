@@ -40,7 +40,7 @@ function ForecastDay(props) {
 ForecastDay.propTypes = {
   unixTimestamp: PropTypes.number.isRequired,
   iconName: PropTypes.string.isRequired,
-  onClickForecastDay: PropTypes.func.isRequired,
+  onClickForecastDay: PropTypes.func,
 };
 
 module.exports = ForecastDay;
